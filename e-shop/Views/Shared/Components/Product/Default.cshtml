@@ -1,0 +1,52 @@
+﻿@using ConsoleApp1
+@model ProductViewModel
+@{
+	
+}
+
+<div class="product item1">
+    <a asp-controller="Products" asp-action="Detail" asp-route-id="@Model.Id">
+        <div class="wrapper">
+            <div class="image">
+                @if (@Model.PhotoName != null)
+                {
+                    <img src="~/images/uploaded/@Model.PhotoName" alt="">
+                }
+                else
+                {
+                    <img src="~/images/img2/noimage.png" alt="">
+                }
+
+            </div>
+            <div  class="title">
+                <span>@Model.Title</span>
+            </div>
+        
+            <div class="price">
+
+                
+                    @if (Model.IsOnSale())
+                    {
+                        <span class="sale-price">
+                            @Model.SalePrice.ToString() Kč
+                        </span>
+                    }
+
+                <span class="@(Model.IsOnSale() ? "original-price" : "original-price-nosale")">@Model.OriginalPrice Kč</span>
+
+                @if (!Model.IsOnSale())
+                {
+                    <span class="sale-price">
+                                ㅤㅤㅤ
+                    </span>
+                }
+
+                <div class="cart">
+                    <a asp-controller="Cart" asp-action="Add" asp-route-productId="@Model.Id" asp-route-colorId="@Model.ColorId" asp-route-sizeId="@Model.SizeId">
+                        <img src="/images/img/Group 6.svg" alt="">
+                    </a>    
+                </div>                                                                
+            </div>
+        </div>
+    </a>
+</div>

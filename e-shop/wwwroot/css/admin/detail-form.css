@@ -1,0 +1,129 @@
+﻿.admin-detail-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.form-gap{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.admin-detail-form, .admin-detail-form-div {
+    width: 100%;
+}
+
+.admin-detail-form form .variants {
+    display: flex;
+    gap: 30px;
+}
+
+.admin-detail-form .variants-heading{    
+    text-align: center;
+}
+
+.admin-detail-form .variants-heading label {
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.admin-detail-form .variants-table,
+.admin-detail-form .variants-table table {
+    width: 100%;
+}
+
+.variants-detail-from-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.variants-detail-from-wrapper .heading{
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+    border-bottom: 1px solid lightgray
+}
+
+.admin-detail-form  .button-submit{
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid lightgray;
+}
+
+.variants-detail-from-wrapper form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.variants-detail-from-wrapper form label {
+    position: absolute;
+}
+
+.variants-detail-from-wrapper form input {
+        
+    margin-left: 250px;
+}
+
+.variants-detail-from-wrapper form input {
+    width: 300px;
+    height: 30px;
+}
+
+.admin-detail-form .photos {
+    margin-bottom:20px;
+    padding-bottom:25px;
+    border-bottom:1px solid lightgray;
+}
+
+.admin-detail-form .photos img {
+    width: 120px;
+}
+
+.admin-detail-form .variants-table table th {
+    height: 50px;
+    font-weight: bold;
+}
+
+.admin-detail-form .variants-table table th,
+.admin-detail-form .variants-table table td {
+    border: 1px solid #b4bed5;
+    text-align: center;
+    padding: 5px;
+}
+
+.admin-detail-form .form-buttons button,
+.admin-detail-form .form-buttons a,
+.variants-detail-from-wrapper .form-buttons button,
+.variants-detail-from-wrapper .form-buttons a {
+    width: 100px;
+    height: 45px;
+}
+
+.admin-detail-form .form-buttons, .variants-detail-from-wrapper .form-buttons {
+    border-top: 1px solid lightgray;
+    width: 100%;
+    text-align: center;
+    padding-top: 30px;
+    margin-top: 30px;
+}
+
+.admin-detail-form modal-content .wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-detail-form modal-content .wrapper div {
+    display: flex;
+    justify-content: space-around;
+}
+
+.admin-detail-form .variants-table table a {
+    font-size: 15px;
+}

@@ -1,0 +1,14 @@
+﻿.category-detail-form form > div{
+    
+}
+
+
+.category-detail-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.category-detail-form form *:not(.btn){
+    width: 100%;
+}

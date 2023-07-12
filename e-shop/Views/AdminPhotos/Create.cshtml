@@ -1,0 +1,43 @@
+﻿@model ConsoleApp1.Photo
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_LayoutAdmin";
+
+    int productId = this.ViewBag.ProductId;
+}
+<link rel="stylesheet" href="~/css/admin/detail-form.css" asp-append-version="true" />
+
+<h1>Create</h1>
+
+<h4>Obrázek</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" asp-controller="AdminPhotos" asp-route-productId="@productId" enctype="multipart/form-data">
+            <div class="form-gap">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Priority" class="control-label"></label>
+                <input asp-for="Priority" class="form-control" />
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Obrázek</label>
+                <input type="file" name="formFile"/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@productId">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

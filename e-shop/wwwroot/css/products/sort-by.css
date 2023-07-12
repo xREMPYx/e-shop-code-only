@@ -1,0 +1,141 @@
+fieldset {
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    gap:0px;
+
+    margin-bottom: 20px;
+}
+
+#sort-by {    
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+#sort-by span {
+    color: #c7232f;
+    margin-right: 5px;
+}
+
+    #sort-by .option {
+        flex: 1;
+        
+    }
+
+#sort-by .option label{
+    width: 100%
+}
+
+#sort-by .option label div {
+    font-size: 20px;
+    color: #304068;
+    background: #fff;
+    outline: #ccc 1px solid;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+    transition: 0.3s;
+}
+
+#sort-by .option label:hover {
+    cursor: pointer;
+}
+
+#sort-by .option label:hover > div {
+    background: #ccc;
+}
+
+#sort-by .active label > div {
+    background: #ccc;
+}
+
+#sort-by input {
+    display: none;
+}
+
+.filters .view-settings .my-select {
+    width: 100px;
+    margin-left: 10px;
+}
+
+.filters .view-settings .price-range{
+    display: flex;
+    gap: 20px;
+}
+
+.filters .view-settings > div {
+    color: #304068;
+}
+
+.filters .view-settings {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.filters .view-settings .view-products {
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.categories {
+
+    margin-bottom: 30px;
+    display: grid;
+    gap: 10px;
+    grid-column-gap: 10px;
+    grid-template-areas:"category-item category-item category-item category-item category-item";
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.categories a {
+    text-decoration: none;
+    color: #304068;
+}
+
+.categories a:hover > div {
+    text-decoration: none;
+    background: #ccc;
+}
+
+.categories .category-item {
+    transition: 0.3s;
+    height: 50px;
+    background: #eeeeee;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .filters form {
+        padding: 20px;
+        height: 170px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        background: #eeeeee;
+        border-radius: 5px;
+    }
+
+.filters form .first{
+    display: flex;
+    justify-content: space-between;
+}
+
+.filters form .filter-button{
+    width: 120px;
+    height: 40px;
+    margin-top: 20px;
+}
+
+.filters form .submit-button{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,58 @@
+﻿@model ConsoleApp1.Product
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_LayoutAdmin";
+
+    ICollection<Category> categories = this.ViewBag.Categories;
+}
+<link rel="stylesheet" href="~/css/admin/detail-form.css" asp-append-version="true" />
+<h1>Create</h1>
+
+<h4>Produkt</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div class="form-gap">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Full_Description" class="control-label"></label>
+                    <textarea asp-for="Full_Description" class="form-control"></textarea>
+                    <span asp-validation-for="Full_Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+				    <label for="categories">Kategorie:</label>
+				    <select name="categoryId" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
+				      <option selected>Open this select menu</option>
+				        @foreach (Category category in categories)
+                        {
+                             <option value="@category.Id">@category.Name</option>
+                        }
+				    </select>
+			    </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,91 @@
+.hero {
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hero img {
+    width: 121px;
+    height: 52px;
+}
+
+.hero .cart-count {
+    margin-left: 22px;
+    margin-top: -10px;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    background: #a0a0a0c6;    
+    color: #fff;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: none;
+}
+
+.hero .cart-count-active {
+    display: inline;
+}
+
+.hero .cart-count span {
+    font-size: 15px;
+    margin-left: -18px
+}
+
+.hero .wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.hero .wrapper img{
+    width: 34px;
+    height: 32px;
+}
+
+.hero div > div {
+    padding-left: 18px
+}
+
+.hero input{    
+    border: 0px;
+    outline: 1px #cccccc solid;
+    font-size: 16px;
+    height: 34px;
+    width: 210px;    
+}
+
+.hero input:focus{
+    outline: 1px #a0a0a0 solid;
+}
+
+.hero input::placeholder{
+    color:#b4bed5;
+}
+
+.hero input.search{
+    background: white url(/images/img/loupe.png) left no-repeat;
+    padding-left: 40px;    
+}
+
+@media only screen and (min-width: 581px) {
+    .search-input {
+        display: inline;
+    }
+
+    .loupe {
+        display: none;
+    }    
+}
+
+@media only screen and (max-width: 580px) {
+    .loupe {
+        display: inline;
+    }
+
+    .search-input {
+        display: none;
+    }
+}

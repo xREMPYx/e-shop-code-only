@@ -1,0 +1,74 @@
+﻿
+.rate {
+    float: left;
+    height: 46px;
+    margin-left: 10px;
+}
+
+.rating-picture img {
+    width: 200px;
+}
+
+.rate:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+}
+
+.feedback-detail-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+    .feedback-detail-wrapper .product {
+        display: flex;
+        gap: 20px;
+    }
+
+    .rate:not(:checked) > label {
+        float: right;
+        width: 1em;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 30px;
+        color: #ccc;
+    }
+    .rating {
+        width: 170px;
+    }
+        .rate:not(:checked) > label:before {
+            content: '★ ';
+        }
+
+    .rate > input:checked ~ label {
+        color: #ffc700;
+    }
+
+.rate:not(:checked) > label:not(.star-item):hover,
+.rate:not(:checked) > label:not(.star-item):hover ~ label {
+    color: #deb217;
+}
+
+.rate > input:checked + label:not(.star-item):hover,
+.rate > input:checked + label:not(.star-item):hover ~ label,
+.rate > input:checked ~ label:not(.star-item):hover,
+.rate > input:checked ~ label:not(.star-item):hover ~ label,
+.rate > label:not(.star-item):hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+
+.rate:not(:checked) > label.star-item:hover,
+.rate:not(:checked) > label.star-item:hover ~ label {
+    cursor: default;
+}
+
+.rate > input:checked + label.star-item:hover,
+.rate > input:checked + label.star-item:hover ~ label,
+.rate > input:checked ~ label.star-item:hover,
+.rate > input:checked ~ label.star-item:hover ~ label,
+.rate > label.star-item:hover ~ input:checked ~ label {
+    cursor: default;
+}
+

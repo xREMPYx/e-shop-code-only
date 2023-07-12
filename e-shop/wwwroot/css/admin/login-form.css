@@ -1,0 +1,23 @@
+﻿.login-form{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    margin-top: 300px;
+}
+
+.login-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 300px;
+}
+
+.login-form-wrapper {
+    width: 60%;
+}

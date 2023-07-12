@@ -1,0 +1,239 @@
+section .heading {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+    section .heading .filters .sort-by{
+        margin: 0px 30px;
+    }
+
+    section .heading > span {
+        font-size: 35px;
+    }
+
+section .heading > span.first {
+    color: #c7232f;    
+}
+
+section .heading > span.second {
+    color: #304068;
+    font-weight: bold;
+}
+
+.products{
+    margin-bottom: 50px;
+}
+
+.products a {
+    text-decoration: none;
+}
+
+.product .wrapper {
+    width: 90%;
+
+    display: grid;
+    grid-template-areas:
+            "image"
+            "title"
+            "price";
+
+    grid-template-rows: 8fr 2fr 1fr;
+}
+
+.product {
+    width: 275px;
+    height: 360px;
+    outline: 1px solid #b4bed5;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.1s;
+}
+
+section .product .cart {
+    position: absolute;
+    display: none;
+    margin-top: -80px;
+    margin-left: -20px;
+}
+
+.product:hover{
+    outline: 3px solid red;
+    cursor: pointer;
+}
+
+.product:hover .cart{
+    display: inline;
+}
+
+.product .price{
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.product .price img {
+    width: 34px;
+    margin-top: -5px;
+    margin-left: 60px;
+}
+
+.product .title {
+    font-size: 18px;
+    color: #304068;
+}
+
+.product .sale-price {
+    color: #c7232f;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.product .original-price {
+    color: #b5bed5;
+    font-weight: 300;
+    text-decoration: line-through;
+}
+
+section .product img {
+    width: 250px;
+    height: 200px;
+    margin-bottom: 30px;
+}
+
+section .button{
+    margin: 50px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section .button button{    
+    width: 225px;
+    height: 50px;    
+}
+
+section .pages {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: -15px 0;
+}
+
+section .pages .wrapper {
+    width: 150px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;    
+    gap: 4px;
+}
+
+section .pages .wrapper div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section .pages .wrapper .actual-page {
+        
+}
+
+section .pages .wrapper div a {
+    width: 100%;
+    height: 100%;
+    border: none;
+    color: #c7232f;
+    background: #fff;
+    outline: 1px solid #c7232f;
+    transition: 0.3s;
+    text-decoration: none;
+    text-align: center;
+    padding-top: 10px;
+}
+
+section .pages .wrapper div a:hover {
+    color: #fff;
+    background: #c7232f;
+}
+
+@media only screen and (min-width: 1250px) {
+    .products {
+    justify-content: space-between;
+    row-gap: 20px;
+    width: 100%;
+    display: grid;
+    grid-template-areas:
+        "item1 item2 item3 item4"
+        "item5 item6 item7 item8";
+    }
+}
+
+@media only screen and (min-width: 621px) and (max-width: 1250px) {
+    .products {
+        gap: 21px;
+        width: 100%;
+        display: grid;
+    
+        grid-template-areas:
+                "item1 item2 item3"
+                "item4 item5 item6";
+    }
+
+    .products .item7, 
+    .products .item8 {
+        position: absolute;
+        display: none;
+        visibility: hidden;
+    }
+}
+
+@media only screen and (min-width: 621px) and (max-width: 950px) {
+
+    .products {
+        gap: 21px;
+        width: 100%;
+        display: grid;
+        justify-content: space-around;
+        grid-template-areas:
+                "item1 item2"
+                "item3 item4";
+    }
+
+    .products .item5, 
+    .products .item6, 
+    .products .item7, 
+    .products .item8 {
+        position: absolute;
+        display: none;
+        visibility: hidden;
+    }
+}
+
+@media only screen and (max-width: 620px) {
+    .products {
+        gap: 21px;
+        width: 100%;
+        display: grid;
+    
+        grid-template-areas:
+                "item1"
+                "item2" 
+                "item3" 
+                "item4";
+
+        justify-content: center;
+    }
+
+    .products .item5, 
+    .products .item6, 
+    .products .item7, 
+    .products .item8 {
+        position: absolute;
+        display: none;
+        visibility: hidden;
+    }
+}

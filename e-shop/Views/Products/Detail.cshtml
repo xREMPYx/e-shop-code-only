@@ -1,0 +1,300 @@
+﻿@using ConsoleApp1
+@using e_shop.Models.ViewModels;
+@using System.Collections
+@model ProductDetailViewModel
+@{
+
+}
+<link rel="stylesheet" href="~/css/detail/detail.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/detail/products.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/shared/rating.css" asp-append-version="true" />
+
+<div class="route">
+        
+        <a asp-controller="Products" asp-action="Index">Produkty</a>
+    @foreach (Category category in Model.Category.GetParents())
+    {
+        <span> > </span> <a asp-action="Index" asp-route-categoryId="@category.Id">@category.Name</a>
+    }
+
+    <span> > </span> <a  asp-action="Index" asp-route-categoryId="@Model.Category.Id">@Model.Category.Name</a>
+</div>
+
+<div class="detail">
+
+    <div class="wrapper1">
+        <div class="pictures">
+            <div class="main-picture">
+                @if (Model.Photos.MaxBy(p => p.Priority) != null)
+                {
+                    <img src="~/images/uploaded/@Model.Photos.MaxBy(p => p.Priority).Name" alt="">
+                }
+                else
+                {
+                    <img src="~/images/img2/noimage.png" alt="">
+                }
+            </div>
+            <div class="other-pictures">
+                @for (int i = 0; i < 3; i++)
+                {
+                    <div class="picture">
+                        <div class="overlay"></div>
+                        @if (i < Model.Photos.Count() && Model.Photos[i] != null)
+                        {
+                            <img src="~/images/uploaded/@Model.Photos[i].Name" alt="">
+                        }
+                        else
+                        {
+                            <img src="~/images/img2/noimage.png" alt="">
+                        }                                
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="text">
+            <div class="title">
+                <div class="name">
+                    @Model.Title
+                </div>
+                <div class="brand">
+                    <img src="~/images/img/detail-logo.png" alt="">
+                </div>
+            </div>
+            <div class="info">
+                <p>
+                    @Model.Description
+                </p>
+            </div>
+            <div class="choice">
+                <div class="color">
+                    <div class="heading">
+                        Barva
+                    </div>
+                    <div class="radio-buttons">
+
+                        <fieldset id="color" class="colors">
+                            @foreach (Color color in Model.Colors)
+                            {
+                                <a asp-action="Detail" asp-route-colorId="@color.Id">
+                                    <input type="radio">
+                                    <label for="radioColor@(color.Id)">
+                                        <div class="size-option @(Model.SelectedColorId == color.Id ? "active" : string.Empty)" style="background: #@color.ColorCode.ToString("X")">
+
+                                        </div>
+                                    </label>
+                                </a>
+                            }
+                        </fieldset>
+
+                    </div>
+                </div>
+                <div class="size">
+                    <div class="heading">
+                        Velikost
+                    </div>
+                    <div class="radio-buttons">
+
+                        <fieldset id="size">
+                            @foreach (Size size in @Model.Sizes)
+                            {
+                                <a asp-action="Detail" asp-route-colorId="@Model.SelectedColorId" asp-route-sizeId="@size.Id">
+                                    <input type="radio">
+                                    <label>
+                                        <div class="size-option @(Model.SelectedSizeId == size.Id ? "active" : string.Empty)">@size.Size_Number</div>
+                                    </label>
+                                </a>
+                            }
+                        </fieldset>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="price">
+                <div class="wrapper">
+                    <div class="on-stock">
+                        Skladem
+                    </div>
+                    <div>
+                        <div>
+                            @if (Model.IsOnSale())
+                            {
+                                <div class="original-price">@Model.OriginalPrice Kč</div>
+                                <div class="sale-price">@Model.SalePrice Kč</div>
+                            }
+                            else
+                            {
+                                <div class="sale-price" style="">@Model.OriginalPrice Kč</div>
+                            }
+                        </div>                            
+                    </div>
+                </div>
+                <div class="cart-button">
+                    <div class="stars">
+                        @if (ViewBag.AverageStars > 0)
+                        {
+                            <div class="rate">
+                            @for (int i = 5; i >= 1; i--)
+                            {
+                                if (ViewBag.AverageStars == i)
+                                {
+                                    <input type="radio" id="star@(i * 6)" checked disabled/>				                        
+                                }
+                                else
+                                {
+                                    <input type="radio" id="star@(i * 6)" disabled/>				                        
+                                }
+
+                                <label class="star-item" for="star@(i * 6)" title="text">@(i * 6) @(i == 1 ? "star" : "stars")</label>
+                            }
+			            </div>
+                        }
+                    </div>
+                    <a asp-controller="Cart" asp-action="Add" asp-route-productId="@Model.ProductId" asp-route-colorId="@Model.SelectedColorId" asp-route-sizeId="@Model.SelectedSizeId">
+                        <button class="my-button">
+                            <div>
+                                <span class="add">Přidat</span> 
+                                <span class="to">do</span> 
+                                <span>košíku</span>
+                            </div>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="description">
+        <div class="wrapper">
+            <div class="heading">
+                Informace o produktu
+            </div>
+            <div class="text">
+                <p>@Model.Full_Description</p>
+            </div>
+        </div>
+        <div class="parameters">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2" class="title">Parametry produktu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Parameter parameter in Model.Parameters)
+                    {
+                        <tr>
+                            <td class="title">@parameter.Title</td>
+                            <td>@parameter.Value</td>
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+<div class="divider">
+    <div>
+        <img src="~/images/img/Group 295.png" alt="">
+    </div>
+</div>
+
+<div class="rating-heading">
+    <span class="first">Hodnocení</span>
+</div>
+
+<div class="rating-box">
+    <div class="rating-form">
+        <form asp-action="SendRating">
+            <input type="hidden" asp-for="ProductId"/>
+            <input type="hidden" asp-for="SelectedColorId"/>
+            <input type="hidden" asp-for="SelectedSizeId"/>
+            <div class="rating-form-heading">
+                Sdělte své pocity
+            </div>
+            <div class="rate">
+                @for (int i = 5; i >= 1; i--)
+                {
+                    @Html.RadioButtonFor(model => model.NewFeedback.Stars, i, new {id = $"star{i}"})
+                    @Html.Label(i == 1 ? "star" : "stars", i == 1 ? "star" : "stars", new { @for = $"star{i}"})
+                }
+            </div>
+                    <div class="mb-3">                        
+                        <textarea type="text" class="form-control" asp-for="NewFeedback.Message"></textarea>
+                    </div>                  
+                    <button type="submit" class="my-button">Submit</button>
+                </form>
+            </div>
+            <div class="rating-items">
+
+                @{int index = 12;}
+
+                @foreach (Feedback feedback in Model.Feedback)
+                {
+                    <div class="rating-item item">
+                        <div class="stars">
+                            <div class="rate">
+                                @for (int i = 5; i >= 1; i--)
+                                {
+                                    if (feedback.Stars == i)
+                                    {
+                                        <input type="radio" id="star@(i * index)" checked disabled/>				                        
+                                    }
+                                    else
+                                    {
+                                        <input type="radio" id="star@(i * index)" disabled/>				                        
+                                    }
+
+                                    <label class="star-item" for="star@(i * index)" title="text">@(i * index) @(i == 1 ? "star" : "stars")</label>
+                                }
+			                </div>
+                        </div>
+                        <div class="message">
+                            <p>
+                                @feedback.Message
+                            </p>
+                        </div>
+                    </div>
+
+                    index+=6;
+                }
+            </div>
+        </div>
+
+
+        <div class="divider">
+            <div>
+                <img src="~/images/img/Group 295.png" alt="">
+            </div>
+        </div>
+        <section>
+
+            <div class="heading">
+                <span class="first">Mohlo by se</span>
+                <br class="next-line">
+                <span class="second">Vám líbit</span>
+            </div>
+
+            <div class="products">
+                @foreach (Product product in Model.RelatedProducts)
+                {
+                    @await Component.InvokeAsync("Product", product)
+                }
+            </div>
+
+        </section>
+        
+        <div class="divider">
+            <div>
+                <img src="~/images/img/Group 295.png" alt="">
+            </div>
+        </div>
+
+        @await Component.InvokeAsync("Features")
+
+</div>
+

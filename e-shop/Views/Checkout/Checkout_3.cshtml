@@ -1,0 +1,97 @@
+﻿@model Order
+@using e_shop.Enums
+@{
+	Layout = "_LayoutCheckout";
+	CheckoutState state = this.ViewBag.CheckoutState;
+
+	string GetClass(CheckoutState f, CheckoutState a)
+	{
+		return f == a ? "actual" : f > a ? "next" : "previous";
+	}
+}
+
+<link rel="stylesheet" href="~/css/checkout/checkout.css"  asp-append-version="true" />
+
+<div class="checkout-route">
+	<span class="cart @GetClass(CheckoutState.CART, state)">
+		Košík
+	</span>
+	<span>></span>
+	<span class="@GetClass(CheckoutState.INFORMATION, state)">
+		Údaje
+	</span>
+	<span>></span>
+	<span class="@GetClass(CheckoutState.SHIPPING, state)">
+		Doprava
+	</span>
+	<span>></span>
+	<span class="@GetClass(CheckoutState.PAYMENT, state)">
+		Platba
+	</span>
+</div>
+
+<form asp-action="Checkout_Complete">
+
+	<input type="hidden" asp-for="CustomerDetails.Contact"/>		
+	<input type="hidden" asp-for="CustomerDetails.First_Name"/>
+	<input type="hidden" asp-for="CustomerDetails.Last_Name"/>	
+	<input type="hidden" asp-for="CustomerDetails.Street"/>	
+	<input type="hidden" asp-for="CustomerDetails.Apartment"/>
+	<input type="hidden" asp-for="CustomerDetails.City"/>	
+	<input type="hidden" asp-for="CustomerDetails.Country"/>	
+	<input type="hidden" asp-for="CustomerDetails.Postal_Code"/>
+	<input type="hidden" asp-for="ShippingMethod"/>
+
+	<div class="quick-info">
+		<div class="item">
+			<div class="heading">
+				Kontakt
+			</div>
+			<div class="email">
+				@Model.CustomerDetails.Contact
+			</div>
+			<div class="button">
+				<a>Change</a>
+			</div>
+		</div>
+		
+		<div class="quick-info-divider"></div>
+
+		<div class="item">
+			<div class="heading">
+				Adresa
+			</div>
+			<div class="address">
+				@($"{Model.CustomerDetails.City}, {Model.CustomerDetails.Street}, {Model.CustomerDetails.Apartment}")
+			</div>
+			<div class="button">
+				<a>Change</a>
+			</div>
+		</div>
+
+		<div class="quick-info-divider"></div>
+
+		<div class="item">
+			<div class="heading">
+				Způsob dopravy
+			</div>
+			<div class="address">
+				@EnumConvert.GetShippingMethod(Model.ShippingMethod)
+			</div>
+			<div class="button">
+				
+			</div>
+		</div>
+	</div>	
+
+	<div class="action-buttons">
+		<div>
+			<button formaction="@Url.Action("Checkout_2")" formmethod="post" class="go-back" type="submit">
+				˂ Zpět k dopravě
+			</button>	
+		</div>
+		<div>
+			<button class="my-button" type="submit">Dokončit objednávku</button>
+		</div>
+	</div>
+</form>

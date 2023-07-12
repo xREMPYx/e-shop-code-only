@@ -1,0 +1,103 @@
+﻿@model ConsoleApp1.Variant
+
+@{
+    ViewData["Title"] = "Edit";    
+    Layout = "_LayoutAdmin";
+
+    int productId = this.ViewBag.ProductId;
+
+    ICollection<Color> colors = this.ViewBag.Colors;
+
+    ICollection<Size> sizes = this.ViewBag.Sizes;
+}
+
+<link rel="stylesheet" href="~/css/admin/detail-form.css" asp-append-version="true" />
+
+<h1>Edit</h1>
+
+<h4>Variant</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" asp-route-productId="@productId">
+            <div class="form-gap">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <select class="form-select" aria-label="Default select example" name="colorId" required>
+                      @if (colors != null)
+                        {
+                            foreach (Color color in colors)
+                            {
+                                if (color.Id == Model.Color.Id)
+                                {
+                                    <option value="@color.Id" selected>@color.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@color.Id">@color.Name</option>
+                                }
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <select class="form-select" aria-label="Default select example" name="sizeId" required>
+                      @if (colors != null)
+                        {
+                            foreach (Size size in sizes)
+                            {
+                                if (size.Id == Model.Size.Id)
+                                {
+                                    <option value="@size.Id" selected>@size.Size_Number</option>
+                                }
+                                else
+                                {
+                                    <option value="@size.Id">@size.Size_Number</option>
+                                }                                
+                            }
+                        }
+                    </select>
+                </div>
+
+               <div class="form-group">
+                    <label for="Tax" class="control-label">Daň (%)</label>
+                    <input asp-for="Tax" type="number" class="form-control" />
+                    <span asp-validation-for="Tax" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="Price" class="control-label">Cena</label>
+                    <input asp-for="Price" type="number" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="Discount" class="control-label">Sleva (%)</label>
+                    <input asp-for="Discount" type="number" class="form-control" />
+                    <span asp-validation-for="Discount" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Discount_Due_Date" class="control-label">Konec slevy</label>
+                    <input asp-for="Discount_Due_Date" class="form-control" />
+                    <span asp-validation-for="Discount_Due_Date" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="Stock" class="control-label">Jednotek na skladě</label>
+                    <input asp-for="Stock" type="number" class="form-control" />
+                    <span asp-validation-for="Stock" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Edit" class="btn btn-primary" />
+                </div>
+             </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@productId">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

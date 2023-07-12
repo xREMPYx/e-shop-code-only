@@ -1,0 +1,89 @@
+﻿@model ConsoleApp1.Variant
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_LayoutAdmin";
+
+    int productId = this.ViewBag.ProductId;
+
+    ICollection<Color> colors = this.ViewBag.Colors;
+
+    ICollection<Size> sizes = this.ViewBag.Sizes;
+}
+
+<link rel="stylesheet" href="~/css/admin/detail-form.css" asp-append-version="true" />
+
+<h1>Create</h1>
+
+<h4>Variant</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create"  asp-route-productId="@productId">
+            <div class="form-gap">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <select class="form-select" aria-label="Default select example" name="colorId" required>
+                      <option value="0">Žádný</option>
+                      @if (colors != null)
+                        {
+                            foreach (Color color in colors)
+                            {
+                                <option value="@color.Id">@color.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <select class="form-select" aria-label="Default select example" name="sizeId" required>
+                      @if (colors != null)
+                        {
+                            foreach (Size size in sizes)
+                            {
+                                <option value="@size.Id">@size.Size_Number</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Tax" class="control-label">Daň (%)</label>
+                    <input asp-for="Tax" type="number" class="form-control" />
+                    <span asp-validation-for="Tax" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="Price" class="control-label">Cena</label>
+                    <input asp-for="Price" type="number" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="Discount" class="control-label">Sleva (%)</label>
+                    <input asp-for="Discount" type="number" class="form-control" />
+                    <span asp-validation-for="Discount" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Discount_Due_Date" class="control-label">Konec slevy</label>
+                    <input asp-for="Discount_Due_Date" class="form-control" />
+                    <span asp-validation-for="Discount_Due_Date" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="Stock" class="control-label">Jednotek na skladě</label>
+                    <input asp-for="Stock" type="number" class="form-control" />
+                    <span asp-validation-for="Stock" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@productId">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

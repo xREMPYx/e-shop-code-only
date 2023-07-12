@@ -1,0 +1,123 @@
+﻿@using ConsoleApp1
+@model List<OrderItem>
+
+<link rel="stylesheet" href="~/css/cart/cart.css" asp-append-version="true" />
+
+<div class="cart">
+	<div class="cart-table">
+		<table>
+			<thead>
+				<tr>
+					<th>Image</th>
+					<th>Product</th>
+					<th>Barva</th>
+					<th>Velikost</th>					
+					<th>Price</th>
+					<th>Quantity</th>
+					<th>Total</th>
+					<th>Remove</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (OrderItem item in Model)
+				{
+					<tr>
+						<td>
+							<a asp-controller="Products" asp-action="Detail" asp-route-id="@item.Variant.Product.Id">
+								@if(item.Variant.Product.Photos != null && item.Variant.Product.Photos.Count() > 0)
+								{							
+									<img src="~/images/uploaded/@item.Variant.Product.Photos.MaxBy(p => p.Priority).Name"/>
+								}
+								else
+								{
+									<img src="~/images/img2/noimage.png"/>		
+								}
+							</a>												
+						</td>
+					<td>@item.Variant.Product.Title</td>
+					<td>@item.Variant.Color.Name</td>
+					<td>@item.Variant.Size.Size_Number</td>
+					<td>@item.Variant.GetDiscountedPriceTax() Kč</td>
+					<td>
+						<div class="page-edit">
+							<div class="button">
+								<a asp-action="Edit" asp-route-index="@Model.IndexOf(item)" asp-route-quantity="@(item.Quantity - 1)">
+									<div>
+										–
+									</div>
+								</a>
+							</div>
+							<div>
+								@item.Quantity
+							</div>
+							<div class="button">
+								<a asp-action="Edit" asp-route-index="@Model.IndexOf(item)" asp-route-quantity="@(item.Quantity + 1)">
+									<div>
+										+
+									</div>
+								</a>
+							</div>
+						</div>
+					</td>
+					<td>@(item.Variant.GetDiscountedPriceTax() * item.Quantity) Kč</td>
+					<td class="remove">
+						<div class="remove-wrapper">
+							<a asp-action="Delete" asp-route-index="@Model.IndexOf(item)">
+								<div class="button">
+									Х
+								</div>
+							</a>
+						</div>						
+					</td>
+				</tr>
+				}
+
+			</tbody>
+		</table>
+	</div>
+	@if (Model.Count() > 0)
+	{
+		<div class="checkout-table">
+		<div class="wrapper">
+			<div class="heading">
+				Celkem
+			</div>
+			<table>
+				<tr>
+					<th>Cena bez DPH</th>
+					<td>
+						@try
+						{
+							@Model.Select(o => o.Quantity * o.Variant.GetDiscountedPriceNoTax()).Aggregate((a, b) => a + b)
+						}
+						catch
+						{
+							<span>0</span>
+						}
+
+						Kč
+					</td>
+				</tr>
+				<tr>
+					<th>Cena včetně DPH</th>
+					<td>
+						@try
+						{
+							@Model.Select(o => o.Quantity * o.Variant.GetDiscountedPriceTax()).Aggregate((a, b) => a + b)
+						}
+						catch
+						{
+							<span>0</span>
+						}
+						
+						Kč
+					</td>
+				</tr>
+			</table>
+			<a class="my-button" asp-controller="Checkout" asp-action="Checkout_1">
+				Pokračovat v objednávce
+			</a>
+		</div>
+	</div>
+	}
+</div>

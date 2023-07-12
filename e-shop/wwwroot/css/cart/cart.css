@@ -1,0 +1,131 @@
+﻿.cart {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order dl {
+    margin-bottom: 25px;
+}
+
+
+
+.cart .cart-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-table-order {
+    margin: 30px 0px;
+    width: 100%;
+}
+
+.cart-table-order table{
+    width: 70%;
+}
+
+.cart .cart-table table th {
+    height: 50px;
+}
+
+.cart .cart-table table tbody {
+    height: 135px;
+}
+
+.cart .cart-table table td .button {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    text-align: center;
+    border: none;
+    background: none;
+    font-size: 20px;
+    transition: 0.3s;
+    color: #304068;
+}
+
+.cart .cart-table table td .remove-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart .cart-table table td .button:hover {
+    background: #30406860;
+    color: #fff;
+}
+
+.cart .cart-table table td .remove-wrapper a {
+    text-decoration: none;
+}
+
+.cart table th,
+.cart table td {
+    border: 1px solid #b4bed5;
+    text-align: center;
+}
+
+    .cart .cart-table table .page-edit {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+    }
+
+        .cart .cart-table table .page-edit a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .cart .cart-table table .page-edit .button {
+            background: silver;
+        }
+
+        .cart .cart-table table .page-edit .button {
+            background: lightgray;
+        }
+
+    .cart .checkout-table {
+        width: 100%;
+        display: flex;
+        justify-content: right;
+    }
+
+.cart .checkout-table table{
+    width: 100%;
+}
+
+.cart .checkout-table .wrapper {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cart .checkout-table .wrapper a{
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.cart .checkout-table .wrapper a:hover{
+    color: #fff;
+}
+
+.cart .checkout-table .wrapper div.heading {
+    font-size: 30px;
+    color: #304068;
+}
+
+.cart .checkout-table table tr {
+    height: 50px;
+}
+
+.cart table img {
+    width: 120px;
+    height: 120px;
+}

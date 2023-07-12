@@ -1,0 +1,75 @@
+﻿@using e_shop.Enums
+@model Order
+@{
+	Layout = "_LayoutCheckout";
+	CheckoutState state = this.ViewBag.CheckoutState;
+
+	string GetClass(CheckoutState f, CheckoutState a)
+	{
+		return f == a ? "actual" : f > a ? "next" : "previous";
+	}
+}
+
+<link rel="stylesheet" href="~/css/checkout/checkout.css"  asp-append-version="true" />
+
+<div class="checkout-route">
+	<span class="cart @GetClass(CheckoutState.CART, state)">
+		Košík
+	</span>
+	<span>></span>
+	<span class="@GetClass(CheckoutState.INFORMATION, state)">
+		Údaje
+	</span>
+	<span>></span>
+	<span class="@GetClass(CheckoutState.SHIPPING, state)">
+		Doprava
+	</span>
+	<span>></span>
+	<span class="@GetClass(CheckoutState.PAYMENT, state)">
+		Platba
+	</span>
+</div>
+
+<form asp-action="Checkout_2">
+	<div id="contact-info-heading">
+		Kontaktní údaje
+	</div>
+
+	<div>
+		<input type="text" asp-for="CustomerDetails.Contact" placeholder="E-mail nebo telefonní číslo"/>
+	</div>
+
+	<div>
+		Adresa
+	</div>
+	<div class="two-input-div">
+		<input type="text" asp-for="CustomerDetails.First_Name" placeholder="Křestní jméno"/>
+		<input type="text" asp-for="CustomerDetails.Last_Name" placeholder="Příjmení"/>
+	</div>
+	<div>
+		<input type="text" asp-for="CustomerDetails.Street" placeholder="Adresa"/>
+	</div>
+	<div>
+		<input type="text" asp-for="CustomerDetails.Apartment" placeholder="Číslo popisné"/>
+	</div>
+	<div>
+		<input type="text" asp-for="CustomerDetails.City" placeholder="Město"/>
+	</div>
+		
+	<div class="two-input-div">		
+		<select class="form-select" asp-for="CustomerDetails.Country" aria-label="Default select example">
+		  <option selected>Země</option>
+		  <option value="Česko">Česko</option>
+		</select>
+		<input type="text" asp-for="CustomerDetails.Postal_Code" placeholder="Směrovací číslo"/>
+	</div>
+
+	<div class="action-buttons">
+		<div>
+			<a asp-controller="Cart" asp-action="Index">˂ Zpět do košíku</a>
+		</div>
+		<div>
+			<button class="my-button" type="submit">Pokračovat k dopravě</button>
+		</div>
+	</div>
+</form>

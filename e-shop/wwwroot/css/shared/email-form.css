@@ -1,0 +1,66 @@
+.email-form {
+    margin-top: 50px;
+    width: 100%;
+    max-width: 1400px;
+    height: 351px;
+    background: url(../../images/img/email-form.png);
+    background-position: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.email-form > div  {
+    margin-bottom: 25px;
+}
+
+.email-form .first {
+    font-size: 32px;
+    font-weight: bold;
+    color: #202020;
+}
+
+.email-form .second {
+    font-size: 20px;
+    color: #606060;
+}
+
+.email-form .input form {
+    display: flex;
+    height: 50px;
+}
+
+.email-form button {
+    height: 50px;
+    width: 100px;
+}
+
+.email-form .input input {
+    height: 47px;    
+    border: none;
+    outline: 1px #cccccc solid;
+    color:#b4bed5;
+    font-size: 16px;
+    background: white url(../../images/img/6.png) left no-repeat;
+    padding-left: 40px;  
+}
+
+.email-form .input input:focus{
+    outline: 1px #a0a0a0 solid;
+}
+
+@media only screen and (min-width: 661px) {
+    .email-form .input input{
+        width: 238px;
+    }
+}
+
+@media only screen and (max-width: 660px) {
+
+    .email-form .input input{
+        width: 198px;
+    }
+}

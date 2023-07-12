@@ -1,0 +1,100 @@
+﻿@using e_shop.Enums
+@model Order
+@{
+	Layout = "_LayoutCheckout";
+}
+
+<link rel="stylesheet" href="~/css/checkout/checkout.css"  asp-append-version="true" />
+
+<div id="checkout-completed"> 
+	<div class="confirmed-box">
+		<div class="heading">
+			Vaše objednávka je potvrzena
+		</div>
+	</div>
+
+	<div class="information-box">
+		<div class="heading">
+			Údaje o zákazníkovi
+		</div>
+		<div class="wrapper">
+			<div class="first">
+				<div class="information">
+					<div class="heading">
+						Kontaktní údaj
+					</div>
+					<div>
+						@Model.CustomerDetails.Contact
+					</div>
+				</div>
+
+				<div class="information">
+					<div class="heading">
+						Adresa
+					</div>
+					<div>
+						@Model.CustomerDetails.City
+					</div>
+					<div>
+						@Model.CustomerDetails.Street
+					</div>
+					<div>
+						@Model.CustomerDetails.Apartment
+					</div>
+					<div>
+						@Model.CustomerDetails.Country
+					</div>
+				</div>
+
+			</div>
+			<div class="second">
+			
+				<div class="information">
+					<div class="heading">
+						Způsob platby
+					</div>
+					<div>
+						Hotově při dodání
+					</div>
+				</div>
+
+				<div class="information">
+					<div class="heading">
+						Adresa
+					</div>
+					<div>
+						@Model.CustomerDetails.City
+					</div>
+					<div>
+						@Model.CustomerDetails.Street
+					</div>
+					<div>
+						@Model.CustomerDetails.Apartment
+					</div>
+					<div>
+						@Model.CustomerDetails.Country
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="information">
+				<div class="heading">
+					Způsob dopravy
+				</div>
+				<div>
+					@EnumConvert.GetShippingMethod(@Model.ShippingMethod)
+				</div>
+		</div>
+	</div>
+
+	<div class="action-buttons-checkout-completed">
+	
+		<div>
+			<a asp-controller="Products" asp-action="Index">			
+				<div class="button my-button">
+					Pokračovat v nákupu
+				</div>
+			</a>
+		</div>
+	</div>
+</div>

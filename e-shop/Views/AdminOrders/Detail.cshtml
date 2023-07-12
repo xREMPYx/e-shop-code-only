@@ -1,0 +1,165 @@
+﻿@model Order
+
+@{
+	Layout = "_LayoutAdmin";
+}
+
+<link rel="stylesheet" href="~/css/cart/cart.css" asp-append-version="true" />
+
+<h1>Detail</h1>
+
+<div class="order">
+    <h4>Objednávka</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Křestní jméno
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CustomerDetails.First_Name)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Příjimení
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CustomerDetails.Last_Name)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Kontakt
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CustomerDetails.Contact)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Město
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CustomerDetails.City)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Adresa
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CustomerDetails.Street)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Číslo popisné
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CustomerDetails.Apartment)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Země
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CustomerDetails.Country)
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Směrovací číslo
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CustomerDetails.Postal_Code)
+        </dd>
+    </dl>
+</div>
+
+<div class="cart-table cart-table-order">
+		<table>
+			<thead>
+				<tr>
+					<th>Image</th>
+					<th>Product</th>
+					<th>Barva</th>
+					<th>Velikost</th>					
+					<th>Price</th>
+					<th>Quantity</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (OrderItem item in Model.OrderItems)
+				{
+					<tr>
+						<td>
+							<a asp-controller="Products" asp-action="Detail" asp-route-id="@item.Variant.Product.Id">
+								@if(item.Variant.Product.Photos != null && item.Variant.Product.Photos.Count() > 0)
+								{							
+									<img src="~/images/uploaded/@item.Variant.Product.Photos.MaxBy(p => p.Priority).Name"/>
+								}
+								else
+								{
+									<img src="~/images/img2/noimage.png"/>		
+								}
+							</a>												
+						</td>
+					<td>@item.Variant.Product.Title</td>
+					<td>@item.Variant.Color.Name</td>
+					<td>@item.Variant.Size.Size_Number</td>
+					<td>@(item.TotalTax / item.Quantity) Kč</td>
+					<td>
+						@item.Quantity
+					</td>
+					<td>@(item.TotalTax) Kč</td>
+				</tr>
+				}
+
+			</tbody>
+		</table>
+	</div>
+	<div class="checkout-table">
+		<div class="wrapper">
+			<div class="heading">
+				Celkem
+			</div>
+			<table>
+				<tr>
+					<th>Cena bez DPH</th>
+					<td>
+						@try
+						{
+						@Model.OrderItems.Select(o => o.TotalNoTax).Aggregate((a, b) => a + b)
+						}
+						catch
+						{
+							<span>0</span>
+						}
+
+						Kč
+					</td>
+				</tr>
+				<tr>
+					<th>Cena včetně DPH</th>
+					<td>
+						@try
+						{
+						@Model.OrderItems.Select(o => o.TotalTax).Aggregate((a, b) => a + b)
+						}
+						catch
+						{
+							<span>0</span>
+						}
+						
+						Kč
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+<div>    
+    <a asp-action="Index">Back to List</a>
+</div>

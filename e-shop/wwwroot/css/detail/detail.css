@@ -1,0 +1,522 @@
+.detail .wrapper1 .other-pictures{
+    display: flex;
+}
+
+.detail .wrapper1{
+    gap: 20px;
+}
+
+.detail .wrapper1 .picture {
+    flex: 1;
+    position: relative;
+}
+
+.detail .wrapper1 .other-pictures .picture .overlay{
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 0%;    
+    background: #c7232e65;   
+    transition: 0.05s;
+}
+
+.detail .wrapper1 .other-pictures img {
+    width: 100%;
+    height: 100%;
+
+    outline: 1px solid #b7c1d7;
+}
+
+.detail .wrapper1 .other-pictures .picture:hover 
+.overlay {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.detail .text .title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detail .text .info {
+    font-size: 16px;
+    color: #b4bed5;
+}
+
+.detail .text .choice {
+    border-top: 1px solid #b4bed5;
+    border-bottom: 1px solid #b4bed5;
+
+    display: flex;
+    align-items: center;
+}
+
+.detail .choice .color, .detail .choice .size {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.detail .color .radio-buttons{
+    display: flex;
+}
+
+.detail .color fieldset{
+    gap: 10px;
+}
+
+.detail .size fieldset{
+    gap: 5px;
+}
+
+.detail input[type="radio"]{
+    display: none;
+}
+
+.detail .radio-buttons label div {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;    
+}
+
+.detail .radio-buttons .colors label div {
+    outline: 1px solid black;
+}
+
+.detail .radio-buttons a:hover {
+    cursor: pointer;
+}
+
+.route {
+    margin-top: -35px;
+}
+
+.detail .choice .color .heading, .detail .choice .size .heading {
+    color: #304068;
+    font-weight: bold;
+}
+
+.detail fieldset{
+    margin-left: -10px;
+    width: 100%;
+    height: 100%;
+    display: flex;    
+    border: none;
+}
+
+.detail .color .radio-buttons{
+    margin-top: 10px;
+    margin-left: 11px;
+    display: flex;
+    justify-content: left;
+}
+
+.detail .color .radio-buttons a:hover > label div{
+    outline: 1px solid #c7232f;
+    cursor: pointer;
+}
+
+.detail .size .radio-buttons a:hover > label div{
+    color: #c7232f;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+.detail .color .radio-buttons .active {
+    outline: 1px solid red;
+}
+
+.detail .size {
+    display: flex;
+    gap: 10px;
+}
+
+.detail .size .size-option{
+    color: #304068;
+}
+
+.detail .size .out-of-stock{
+    color: #b4bed5;
+    text-decoration: line-through;
+}
+
+.detail .size .radio-buttons{
+    margin-left: 11px;
+}
+
+.detail .size .radio-buttons .active {
+    color: #c7232f;
+    text-decoration: underline;
+}
+
+
+.detail .choice {
+    display: flex;    
+}
+
+.detail .price .on-stock{
+    font-size: 42px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #304068;
+}
+
+.detail .price .original-price{
+    text-decoration: line-through;
+    color: #b4bed5;
+}
+
+.detail .price .sale-price{
+    margin-top: -3px;
+    font-size: 42px;
+    font-weight: bold;
+    color: #c7232f;
+}
+
+.detail .price .cart-button button{
+    background-image: url(../../images/img/cart-button-image.png);    
+    background-repeat: no-repeat;
+    
+}
+
+.detail .price .cart-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items:flex-end;
+}
+
+    .detail .price .cart-button button {
+        padding-left: 25px;
+    }
+
+.detail .price {    
+    width: 100%;
+    display: flex;
+}
+
+.detail .price > div{
+    flex: 1;
+}
+
+.detail .description{
+    width: 100%;
+    display: flex;
+    margin-top: 30px;
+}
+
+.detail .description > div{
+    flex: 1;
+}
+
+.detail .price .cart-button button{    
+    height: 50px;     
+}
+
+.detail .description .wrapper .text span {
+    color: #304068;
+    font-weight: bold;
+}
+
+.detail .description .wrapper .heading{
+    color: #304068;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.detail .description .parameters table{
+    height: 290px;    
+    border-collapse: collapse;
+}
+
+.detail .description .parameters table thead tr{
+    height: 60px;
+    width: 100%;
+}
+
+.detail .description .parameters table .title {
+    padding-left: 10px;
+    font-weight: bold;        
+}
+
+.detail .description .parameters table thead tr th{
+    width: 100%;    
+}
+
+.detail .description .parameters table tbody{    
+    color: #304068;
+}
+
+.detail .description .parameters table tbody td{
+    width: 1rem;
+}
+
+.detail .description .parameters table thead{
+    height: 30px;
+    text-align: center;
+    background: #304068;
+    color: #fff;
+}
+
+.detail .description .parameters {
+    display: flex;
+}
+
+.detail .description .parameters table tbody tr:nth-child(odd){
+    background-color: #d6d9e1;
+}
+
+@media only screen and (min-width: 641px) {
+
+    .detail .name {
+        color: #304068;
+        font-size: 42px;
+        font-weight: bold;
+    }    
+
+    .detail .wrapper1 {
+        display: flex;
+    }
+
+    .detail .wrapper1 .other-pictures{
+        margin-top: 15px;
+        gap: 30px;
+    }
+    
+    .detail .wrapper1 > div {
+        flex: 1;
+    } 
+
+    .detail .wrapper1 .pictures .main-picture img {
+        width: 585px;
+        height: 585px;
+
+        outline: 1px solid #b7c1d7;
+    }
+
+    .detail .wrapper1 .other-pictures .picture{
+        width: 175px;
+        height: 175px;
+        max-width: 175px;
+        min-width: 175px;
+    }
+
+    .detail .text .info{
+        margin-top: 40px;
+    }
+
+    .detail .text .choice {
+        margin-top: 60px;
+        height: 120px;
+    }
+
+    .detail .price {
+        margin-top: 30px;
+    }
+
+    .detail .price .cart-button button{
+        width: 225px;      
+    }
+
+    .detail .description .wrapper {
+        flex: 790;
+    }
+
+    .detail .description .parameters {
+        flex: 410;
+    }
+
+    .detail .description .parameters {        
+        justify-content: right;
+    }
+
+    .detail .description .parameters table{
+        width: 380px;
+    }
+}
+
+@media only screen and (max-width: 1361px) and (min-width: 641px) {
+    .detail .wrapper1 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .detail .text .title {
+        margin: 20px 0px;
+        font-size: 30px;
+    }  
+
+    .detail .pictures > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.detail .pictures > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 900px) and (min-width: 641px) {
+    .detail .description{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .detail .description table {
+        margin-top: 20px;
+    }
+}
+
+@media only screen and (max-width: 640px){
+    .detail .wrapper1 .pictures .main-picture img {
+        width: 340px;
+        height: 340px;
+
+        outline: 1px solid #b7c1d7;
+    }
+
+    .detail .wrapper1 .other-pictures .picture{
+        width: 100px;
+        height: 100px;
+        max-width: 100px;
+        min-width: 100px;
+    }
+
+    .detail{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .detail .name {
+        margin: 20px 0px;
+        color: #304068;
+        font-size: 30px;
+        font-weight: bold;
+    }  
+
+    .detail .wrapper1 .text .title .brand, 
+    .detail .wrapper1 .text .info,
+    .detail .price .cart-button .add {
+        position: absolute;
+        display: none;
+    }
+
+    .detail .wrapper1 .other-pictures{
+        margin-top: 15px;
+        gap: 20px;
+    }
+
+    .detail .wrapper1 .choice {
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .detail .wrapper1 .choice .color {
+        margin-top: 20px;
+    }
+
+    .detail .price {
+        margin-top: 10px;
+    }
+
+    .detail .description .wrapper .text p{
+        text-align: justify;
+    }
+
+    .detail .price .wrapper .on-stock{
+        font-size: 30px;
+    }
+
+    .detail .description {
+        flex-direction: column;
+    }
+
+    .detail .description .wrapper .heading{
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .detail .description .parameters table{
+        width: 100%;
+        height: 290px;    
+        border-collapse: collapse;
+    }
+
+    .detail .price .cart-button button{
+        width: 160px;           
+    }
+
+    .detail .price .cart-button .to{
+        text-transform: capitalize;
+    }
+}
+
+.rating-heading {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 35px;    
+    color: #c7232f;
+}
+
+.rating-box{
+    display: flex;
+    min-height: 300px;
+    gap: 50px;
+}
+
+.rating-box .rating-form {
+    flex: 1;
+}
+
+    .rating-box .rating-form form button {
+        width: 100px;
+        height: 40px;
+    }
+
+    .rating-box .rating-form form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        outline: 2px solid #304068;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+.rating-form-heading {
+    color: #304068;
+    font-size: 20px;
+    text-align: center;
+}
+
+.rating-box .rating-items {
+    flex: 3;
+    height: 100%;
+    display: grid;
+    grid-template-areas: "item item item item";
+    grid-row-gap: 20px;
+    grid-column-gap: 20px;
+}
+
+    .rating-box .rating-items .rating-item {
+        padding: 20px;
+        width: 200px;
+        gap: 20px;
+        outline: 2px solid #304068;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+.rating-box .rating-items .rating-item p {
+    
+}

@@ -1,0 +1,228 @@
+﻿@model ConsoleApp1.Product
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_LayoutAdmin";
+
+	ICollection<Category> categories = this.ViewBag.Categories;
+}
+
+<link rel="stylesheet" href="~/css/admin/detail-form.css" asp-append-version="true" />
+
+<h1>Edit</h1>
+
+<h4>Produkt</h4>
+<hr />
+<div class="row admin-detail-form">
+    <div class="col-md-4 admin-detail-form-div">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Full_Description" class="control-label"></label>
+                <textarea asp-for="Full_Description" class="form-control"></textarea>
+                <span asp-validation-for="Full_Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+				    <label for="categories">Kategorie:</label>
+				    <select name="categoryId" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+				      <option selected>Open this select menu</option>
+				        @if (categories != null)
+						{
+							if (Model.Category == null)
+							{
+								<option selected value="0">Žádný</option>
+							}
+
+							@foreach (Category category in categories)
+							{
+								if(Model.Category != null && category.Id == Model.Category.Id )
+								{
+									<option selected value="@category.Id">@category.Name</option>
+								}
+								else
+								{
+									<option value="@category.Id">@category.Name</option>
+								}
+							}
+						}
+				    </select>
+			    </div>
+
+            
+			@if (Model.Parameters != null)
+				{
+					<div class="variants photos">
+						<div class="variants-heading">
+						  <label>Parametry</label>
+						  <a class="AddPopUp btn btn-primary" asp-controller="AdminParameters" asp-action="Create" asp-route-productId="@Model.Id">Přidat</a>			  
+						</div>
+						<div class="variants-table">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>
+											Název
+										</th>
+										<th>
+											Hodnota
+										</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+							@foreach (var item in Model.Parameters) {
+									<tr>
+										<td>
+											@Html.DisplayFor(modelItem => item.Title)								
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.Value)
+										</td>
+										<td>
+											<a asp-controller="AdminParameters" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+											<a asp-controller="AdminParameters" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+											<a asp-controller="AdminParameters" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+										</td>
+									</tr>
+							}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				}					
+
+			@if (Model.Photos != null)
+			{
+				<div class="variants photos">
+					<div class="variants-heading">
+					  <label>Obrázky</label>
+					  <a class="AddPopUp btn btn-primary" asp-controller="AdminPhotos" asp-action="Create" asp-route-productId="@Model.Id">Přidat</a>			  
+					</div>
+					<div class="variants-table">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>
+									Obrázek
+								</th>
+								<th>
+									Priorita
+								</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+					@foreach (var item in Model.Photos) {
+							<tr>
+								<td>
+									@try
+									{
+										<img src="~/images/uploaded/@item.Name"/>
+									}
+									catch
+									{
+										<img src="~/images/img2/noimage.png"/>		
+									}	
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.Priority)
+								</td>
+								<td>
+									<a asp-controller="AdminPhotos" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+									<a asp-controller="AdminPhotos" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+									<a asp-controller="AdminPhotos" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+								</td>
+							</tr>
+					}
+						</tbody>
+					</table>			
+					</div>
+				</div>
+			}
+
+
+			@if (Model.Variants != null)
+			{
+				<div class="variants">
+				<div class="variants-heading">
+					<label>Varianty</label>
+					<a class="AddPopUp btn btn-primary" asp-controller="AdminVariants" asp-action="Create" asp-route-productId="@Model.Id">Přidat</a>			  
+				</div>
+				<div class="variants-table">
+
+					<table class="table">
+						<thead>
+							<tr>
+								<th>
+									Barva
+								</th>
+								<th>
+									Velikost
+								</th>
+								<th>
+
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+					@foreach (var item in Model.Variants) {
+							<tr>								
+									@if(item.Color != null)
+									{
+										<td>
+											@item.Color.Name
+										</td>
+									}		
+									else
+									{
+										<td></td>
+									}							 								
+									@if (item.Size != null)
+									{
+										<td>
+											@item.Size.Size_Number
+										</td>										
+									}
+									else
+									{
+										<td></td>
+									}									
+								<td>
+									<a asp-controller="AdminVariants" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+									<a asp-controller="AdminVariants" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+									<a asp-controller="AdminVariants" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+								</td>
+							</tr>
+					}
+						</tbody>
+					</table>			
+					</div>
+				</div>
+			}
+
+            <div class="form-group button-submit">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

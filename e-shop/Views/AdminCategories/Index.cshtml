@@ -1,0 +1,52 @@
+﻿@model IEnumerable<e_shop.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutAdmin";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Název
+            </th>
+            <th>
+                Nadřazenná kategorie
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) 
+{
+        <tr>
+            <td>
+                <div style="margin-left: @(item.GetParents().Count() * 20)px">
+                        @Html.DisplayFor(modelItem => item.Name)
+                </div>
+            </td>
+            
+            @if (item.Parent !=  null)
+            {
+                <td>@item.Parent.Name</td>
+            }
+            else
+            {
+                <td><strong>Hlavní kategorie</strong></td>
+            }
+            
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

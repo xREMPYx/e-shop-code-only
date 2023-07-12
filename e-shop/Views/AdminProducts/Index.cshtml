@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ConsoleApp1.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutAdmin";
+}
+
+<link rel="stylesheet" href="~/css/admin-table/admin-table.css" asp-append-version="true" />
+
+<div class="admin">
+	<div class="add-new">
+		<div>
+			<h3>Produkty</h3>
+		</div>
+		<div><a class="btn btn-primary" asp-action="Create">Přidat nový</a></div>
+	</div>
+	<div class="admin-table">
+		<table>
+			<thead>
+				<tr>
+					<th>Obrázek</th>
+					<th>Název</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+                @foreach (var item in Model) {
+                <tr>
+                    <td>
+						@if(@item.Photos.Count() != 0)
+						{
+							<img src="~/images/uploaded/@item.Photos.MaxBy(p => p.Priority).Name"/>
+						}
+						else
+						{
+							<img src="~/images/img2/noimage.png"/>		
+						}						
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>                    
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+				}				
+			</tbody>
+		</table>
+	</div>	
+</div>

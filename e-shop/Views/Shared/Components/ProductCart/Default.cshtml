@@ -1,0 +1,25 @@
+﻿@using ConsoleApp1
+@model OrderItem
+
+<div class="product">
+    <div class="image">                            
+        @if(Model.Variant.Product.Photos != null && Model.Variant.Product.Photos.Count() > 0)
+		{							
+			<img src="~/images/uploaded/@Model.Variant.Product.Photos.MaxBy(p => p.Priority).Name"/>
+		}
+		else
+		{
+			<img src="~/images/img2/noimage.png"/>		
+		}
+        <div class="count">
+            @Model.Quantity
+        </div>
+        <div class="overlay"></div>
+    </div>
+    <div class="title">
+        @Model.Variant.Product.Title
+    </div>
+    <div class="price">
+        @Model.Variant.GetDiscountedPriceTax()
+    </div>
+</div>

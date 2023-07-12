@@ -1,0 +1,83 @@
+* {
+    font-family: 'Libre Franklin', sans-serif;
+}
+
+body {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.my-button {
+    height: 50px;
+    border: 0px;
+    font-size: 16px;
+    background: #c7232f;
+    outline: 1px solid #c7232f;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.my-button:hover{
+    cursor: pointer;
+    background: #c7020f;
+}
+
+.divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 2px;
+    background: #b4bed5;
+    
+    margin: 50px 0px;
+}
+
+.divider > div {
+    width: 50px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+.medium {
+    font-weight: 500;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+
+@media only screen and (min-width: 361px){
+    .width {
+        width: 90%;
+        max-width: 1200px;
+    }
+
+    .max-width {
+        width: 1400px;
+        min-width: 1400px;
+        max-width: 1400px;
+    }
+}
+
+@media only screen and (max-width: 360px){
+
+    .width {
+        width: 95%;
+        max-width: 342px;
+    }
+
+    .max-width {
+        width: 360px;
+        min-width: 360px;
+        max-width: 360px;
+    }
+}

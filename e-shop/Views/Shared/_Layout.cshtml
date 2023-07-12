@@ -1,0 +1,262 @@
+﻿@{
+    bool auth = this.ViewBag.Authenticated;
+
+    int cartCount = this.ViewBag.Cart.Count;
+    bool showCart = cartCount > 0;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - e_shop</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/e_shop.styles.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="~/css/shared/general.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/shared/product.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/shared/features.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/shared/footer.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/shared/header.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/shared/hero.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/shared/navbar.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/shared/admin-panel.css" asp-append-version="true"/>    
+    <link rel="stylesheet" href="~/css/shared/route.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/shared/email-form.css" asp-append-version="true"/>       
+</head>
+<body>
+    <header class="header">
+
+        <div class="width">
+
+            <div class="wrapper contact">
+                <div class="picture">
+                    <img src="~/images/img/8.png" alt="">
+                </div>
+                <div>
+                    <span><a href="tel:+420 777 666 555"> <span class="code">+420 </span> 777 666 555</a></span>
+                    <span class="pipe">|</span>
+                    <span><a href="mailto:info@nejlepsiboty.cz">info@nejlepsiboty.cz</a></span>                
+                </div>
+            </div>
+    
+            <div class="wrapper">
+
+                @if (auth)
+                {
+                    <a asp-action="Index" asp-controller="AdminHome" style="margin-right: 20px">
+                            <i class="fa-sharp fa-solid fa-gears"></i>
+                    </a>
+                }
+
+                <div class="picture">
+                    <a href=""><img src="~/images/img/profile-user.png" alt=""></a>
+                </div>
+                <div class="login-text">
+                    @if (auth)
+                    {                        
+                        <a asp-action="LogOut" asp-controller="Login">Odhlásit se</a>
+                        
+                    }else
+                    {
+                        <a asp-action="Index" asp-controller="Login">Přihlásit se</a>
+                    }
+                </div>                
+            </div>
+
+        </div>
+
+    </header>
+
+     <div class="width">
+
+        <div class="hero">
+            <div>
+                <a asp-controller="Home" asp-action="Index"><img src="~/images/img/Group 4.png"/></a>
+            </div>
+            <div class="wrapper">
+
+                <div class="search-input">
+                    <form action="search.php">
+                        <input type="text"  placeholder="Vyhledat zboží..." class="search">                                            
+                    </form>                    
+                </div>
+
+                <div class="loupe">
+                    <a href=""><img src="~/images/img/loupe.png" alt=""></a>
+                </div>
+
+                <div class="cart">
+                    <div class="cart-count @(showCart ? "cart-count-active" : string.Empty)">
+                        <span>@(showCart ? cartCount : string.Empty)</span>
+                    </div>
+                    <a asp-controller="Cart" asp-action="Index"><img src="~/images/img/Group 6.svg" alt=""/></a>
+                </div>
+
+                <div class="hearth">
+                    <a href=""><img src="~/images/img/heart.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+       
+
+        <nav class="navigation">
+
+            <div class="item item1">
+                <a href="">
+                    <div class="wrapper">
+                        <div>
+                            Chlapecké 
+                        </div> 
+                        <div class="picture">
+                            <img src="~/images/img/Group 169.png" alt="">
+                        </div>
+                    </div> 
+                </a>
+            </div>
+            <div class="item item2">
+                <a href="">
+                    <div class="wrapper">
+                        <div>
+                            Dívčí 
+                        </div> 
+                        <div class="picture">
+                            <img src="~/images/img/Group 171.png" alt="">
+                        </div>
+                    </div> 
+                </a>
+            </div>
+            <div class="item item3">
+                <a href="">
+                    <div class="wrapper">
+                        <div>
+                            Doplňky 
+                        </div> 
+                    </div>
+                </a> 
+            </div>
+            <div class="item item4">
+                <a href="">
+                    <div class="wrapper">
+                        <div>
+                            Ostatní 
+                        </div> 
+                    </div> 
+                </a>
+            </div>
+            <div class="item contacts item5">
+                <a href="">
+                    <div class="wrapper">
+                        <div>
+                            Kontakty 
+                        </div> 
+                    </div> 
+                </a>
+            </div>
+
+        </nav>
+        
+        @*<div class="route">
+            <a asp-controller="Home" asp-action="Index">Domů</a> <span> > </span> <a href=""> Poptávka </a>
+        </div>*@
+
+        @RenderBody()
+    </div>
+
+    
+    @await Component.InvokeAsync("EmailForm")
+
+    <footer class="footer">
+
+        <div class="red">
+
+            <div class="about-us">
+                <div class="heading">
+                    O NÁS
+                </div>
+                <div>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam quis quam. Pellentesque arcu. Proin pede metus, vulputate nec, fermentum fringilla, vehicula vitae, justo. Morbi imperdiet, mauris ac auctor dictum, nisl ligula egestas nulla, et sollicitudin sem purus in lacus. Praesent vitae arcu tempor neque lacinia pretium. Etiam ligula pede, sagittis quis, interdum ultricies, scelerisque eu. Sed vel lectus. Donec odio tempus molestie, porttitor ut, iaculis quis, sem. Pellentesque arcu. Vestibulum fer
+                    </p>
+                </div>
+                <div class="logo">
+                    <a asp-action="Index"><img src="~/images/img/footer-logo.png" alt=""></a>
+                </div>
+            </div>
+
+            <div class="our-offer">
+                <div class="heading">
+                    NAŠE NABÍDKA   
+                </div>
+                <div class="lists">
+
+                    <div class="list first-list">
+                        <div class="heading">
+                            Dívčí
+                        </div>
+                        <div>
+                            <ul>
+                                <li><a href="">Tenisky</a></li>
+                                <li><a href="">Holinky</a></li>
+                                <li><a href="">Sandály</a></li>
+                                <li><a href="">Baleríny</a></li>
+                                <li><a href="">Polobotky</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="list second-list">
+                        <div class="heading">
+                            Chlapecké
+                        </div>
+                        <div>
+                            <ul>
+                                <li><a href="">Tenisky</a></li>
+                                <li><a href="">Holinky</a></li>
+                                <li><a href="">Sandály</a></li>
+                                <li><a href="">Baleríny</a></li>
+                                <li><a href="">Polobotky</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="blue">
+            <div class="wrapper">
+                <div class="heading">
+                    KONTAKTUJTE NÁS
+                </div>
+                <div>
+                    <div class="email link">
+                        <img src="~/images/img/footer-mail.png" alt="">
+                        <a href="mailto:info@nejlepsiboty.cz">info@nejlepsiboty.cz</a>
+                    </div>
+                    <div class="telephone link">
+                        <img src="~/images/img/8.png" alt="">
+                        <a href="tel:+420 777 666 555">+420 777 666 555</a>
+                    </div>
+                    <div class="social-site">
+                        <a href="https://facebook.com"><img src="~/images/img/facebook.png" alt=""></a>
+                        <a href="https://instagram.com"><img src="~/images/img/Group 153.png" alt=""></a>
+                        <a href="https://twitter.com"><img src="~/images/img/twitter.png" alt=""></a>
+                    </div>
+                    <div class="address">
+                        Litvínovská 600, Praha 9, 190 00
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://kit.fontawesome.com/058b494af2.js" crossorigin="anonymous"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

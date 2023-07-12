@@ -1,0 +1,160 @@
+footer {
+    display: flex;    
+    width: 100%;
+    max-width: 1400px;
+    color: #fff;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+footer .red {    
+    background: #c7232f;
+
+    display: flex;
+}
+
+footer .red .about-us {
+    margin-top: 35px;
+}
+
+footer .red .about-us .heading {
+    margin-bottom: 30px;
+}
+
+footer .red .about-us .logo {
+    margin-top: 36px;
+}
+
+.footer .our-offer > .heading {
+    margin-bottom: 30px;
+}
+
+.footer .our-offer .list .heading{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.footer .our-offer {
+    margin-top: 35px;
+}
+
+.footer .blue .wrapper{
+    margin-top: 35px;
+    margin-left: 20px;
+}
+
+.footer .blue .wrapper .heading{
+    margin-bottom: 28px;
+}
+
+.footer .our-offer .first-list {
+    margin-right: 100px;
+}
+
+.footer .our-offer .list ul{
+    margin: 0px;
+    list-style-type: circle;
+    padding: 20px;
+}
+
+.footer .our-offer .list li{
+    margin-bottom: 10px;
+}
+
+.footer .our-offer .lists{
+    display: flex;
+}
+
+footer .blue {
+    background: #304068;
+}
+
+footer .red .about-us .heading {
+    font-size: 16px;
+}
+
+footer .red .about-us p{
+    width: 280px;
+    text-align: justify;
+    font-size: 14px;
+}
+
+.footer .blue .link img{
+    margin-right: 15px;
+}
+
+.footer .blue .link{
+    display: flex;    
+    align-items: center;    
+    margin-bottom: 17px;
+}
+
+.footer .social-site a {
+    margin-right: 10px;
+}
+
+.footer .address {
+    margin-top: 30px;
+}
+
+@media only screen and (min-width: 1201px){
+    
+    footer {
+        height: 440px;
+        flex-direction: row;
+    }
+
+    .footer .our-offer {
+        margin-left: 130px;
+    }
+
+    footer .red .about-us {
+        margin-left: 120px;
+    }
+
+    footer .red {
+        flex-direction: row;
+    }
+
+    footer .red {
+        flex: 10;;
+    }
+
+    footer .blue {
+        flex: 4;;
+    }
+}
+
+@media only screen and (max-width: 1200px){
+    footer {
+        height: 1050px;
+        flex-direction: column;
+    }
+
+    .footer .our-offer {
+        margin-left: 11px;
+    }
+
+    footer .red .about-us {
+        margin-left: 11px;
+    }
+
+    footer .red {
+        flex-direction: column;
+    }
+
+    footer .red {
+        flex: 745;;
+    }
+
+    footer .blue {
+        flex: 305;;
+    }
+}

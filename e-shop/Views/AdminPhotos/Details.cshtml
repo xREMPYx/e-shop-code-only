@@ -1,0 +1,33 @@
+﻿@model ConsoleApp1.Photo
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_LayoutAdmin";
+
+    int productId = this.ViewBag.ProductId;
+}
+<link rel="stylesheet" href="~/css/admin/detail-form.css" asp-append-version="true" />
+<h1>Details</h1>
+
+<div>
+    <h4>Obrázek</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Priority)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Priority)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@productId">Back to List</a>
+</div>

@@ -1,0 +1,21 @@
+.route {
+    height: 70px;
+    color: #c7232f;
+
+    display: flex;
+    align-items: center;
+}
+
+.route span {
+    margin: 0px 5px;
+}
+
+.route a {
+    color: #c7232f;
+    text-decoration: none;
+}
+
+.route a:hover {
+    color: #304068;
+    text-decoration: underline;
+}

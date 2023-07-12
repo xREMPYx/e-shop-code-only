@@ -1,0 +1,118 @@
+﻿@using ConsoleApp1
+@{
+    ViewData["Title"] = "Home Page";    
+}
+
+<link rel="stylesheet" href="~/css/index/gallery.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/index/products.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/shared/footer.css" asp-append-version="true" />
+
+
+<div class="gallery">
+
+            <div class="main-picture">
+                <div class="wrapper">
+                    <div class="split">
+
+                    </div>
+                    <div class="split">
+                        <div class="red-text">
+                            Nová dívčí Kolekce <br>
+                            šetrná k dětským nohám
+                        </div>
+                        <div class="blue-text">
+                            NEJEN DO MĚSTA, <br>
+                            ALE I DO PŘÍRODY
+                        </div>
+                        <div class="button my-button">
+                            <a asp-controller="products" asp-action="index">
+                                    zobrazit produkty
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="radio-buttons">
+
+                    <input type="radio" name="radio" id="radio1" checked>
+                    <label for="radio1"><div></div></label>
+
+                    <input type="radio" name="radio" id="radio2">
+                    <label for="radio2"><div></div></label>
+
+                    <input type="radio" name="radio" id="radio3">
+                    <label for="radio3"><div></div></label>
+
+                </div>
+                
+            </div>
+
+            <div class="link-pictures">
+
+                <div class="picture picture1">
+                    <a href="">
+                        <div class="text">
+                            Klučičí <br>
+                            boty
+                        </div>
+                    </a>
+                </div>
+                <div class="picture picture2">
+                    <a href="">
+                        <div class="text">
+                            Dívčí
+                            boty
+                        </div>
+                    </a>                    
+                </div>
+                <div class="picture picture3">
+                    <a href="">
+                        <div class="text">
+                            jak správně <br>
+                            vybrat?
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="divider">
+            <div>
+                <img src="/images/img/Group 295.png" alt="">
+            </div>
+        </div>
+
+        <section>
+
+            <div class="heading">
+                <span class="first">Nejnovější kousky </span> 
+                <span class="second">v naší nabídce</span>
+            </div>
+
+            <div class="products">
+
+                @foreach (Product product in this.ViewBag.DisplayProducts)
+                {
+                    @await Component.InvokeAsync("Product", product)
+                }                
+                
+            </div>
+
+            <div class="button">
+                <a asp-controller="products" asp-action="index">
+                     zobrazit celou nabídku
+                </a>
+            </div>
+
+        </section>
+
+        <div class="divider">
+            <div>
+                <img src="/images/img/Group 295.png" alt="">
+            </div>
+        </div>
+
+        @await Component.InvokeAsync("Features")
+
+</div>

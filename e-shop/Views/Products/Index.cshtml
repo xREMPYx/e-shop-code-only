@@ -1,0 +1,182 @@
+﻿@model ProductsViewModel
+@using ConsoleApp1
+@using e_shop.Enums
+@using e_shop.Utils
+@{
+    int page = Model.Page;
+
+    bool IsActive(ProductSortType type) => Model.SortType == type;
+}
+
+<link rel="stylesheet" href="~/css/index/products.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/products/sort-by.css" asp-append-version="true" />
+<section>
+
+    <div class="heading">
+        <span class="first">Produkty v </span> 
+        <span class="second">naší nabídce</span>
+    </div>
+
+    <div class="filters">
+        <div id="sort-by">
+
+            <div class="option @(IsActive(ProductSortType.RATING) ? "active" : string.Empty)">
+                <a asp-action="Index" asp-route-categoryId="@Model.Category.Id" asp-route-minPrice="@Model.MinPrice" asp-route-maxPrice="@Model.MaxPrice" asp-route-itemsCount="@Model.ItemsCount" asp-route-page="@(page)" asp-route-type="@((int)ProductSortType.RATING)">
+                    <div type="radio" id="rating" name="sort-by">
+                    <label for="rating">
+                        <div>
+                            <span>Dle</span>hodnocení
+                        </div>
+                    </label>                    
+                    </div>
+                </a>                    
+                
+            </div>
+
+            <div class="option @(IsActive(ProductSortType.TITLE_ASC) ? "active" : string.Empty)">
+                <a asp-action="Index" asp-route-categoryId="@Model.Category.Id" asp-route-minPrice="@Model.MinPrice" asp-route-maxPrice="@Model.MaxPrice" asp-route-itemsCount="@Model.ItemsCount" asp-route-page="@(page)" asp-route-type="@((int)ProductSortType.TITLE_ASC)">
+                    <div type="radio" id="name" name="sort-by">
+                    <label for="name">
+                        <div>
+                            <span>Dle</span>názvu (A-Z)
+                        </div>
+                    </label>
+                    </div>
+                </a>
+            </div>
+
+            <div class="option @(IsActive(ProductSortType.TITLE_DESC) ? "active" : string.Empty)">
+                <a asp-action="Index" asp-route-categoryId="@Model.Category.Id" asp-route-minPrice="@Model.MinPrice" asp-route-maxPrice="@Model.MaxPrice" asp-route-itemsCount="@Model.ItemsCount" asp-route-page="@(page)" asp-route-type="@((int)ProductSortType.TITLE_DESC)">
+                    <div type="radio" id="name" name="sort-by">
+                    <label for="name">
+                        <div>
+                            <span>Dle</span>názvu (Z-A)
+                        </div>
+                    </label>
+                    </div>
+                </a>
+            </div>
+
+            <div class="option @(IsActive(ProductSortType.PRICE_ASC) ? "active" : string.Empty)">
+                <a asp-action="Index" asp-route-categoryId="@Model.Category.Id" asp-route-minPrice="@Model.MinPrice" asp-route-maxPrice="@Model.MaxPrice" asp-route-itemsCount="@Model.ItemsCount" asp-route-page="@(page)" asp-route-type="@((int)ProductSortType.PRICE_ASC)">
+                    <div type="radio" id="price-asc" name="sort-by">
+                    <label for="price-asc">
+                        <div>
+                            <span>Od</span>nejlevnějšího
+                        </div>
+                    </label>
+                    </div>
+                </a>
+            </div>
+
+            <div class="option @(IsActive(ProductSortType.PRICE_DESC) ? "active" : string.Empty)">
+                <a asp-action="Index" asp-route-categoryId="@Model.Category.Id" asp-route-minPrice="@Model.MinPrice" asp-route-maxPrice="@Model.MaxPrice" asp-route-itemsCount="@Model.ItemsCount" asp-route-page="@(page)" asp-route-type="@((int)ProductSortType.PRICE_DESC)">
+                    <div type="radio" id="price-desc" name="sort-by">
+                    <label for="price-desc">
+                        <div>
+                            <span>Od</span>nejdražšího
+                        </div>
+                    </label>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="route">
+        
+            <a asp-controller="Products" asp-action="Index" asp-route-minPrice="@Model.MinPrice" asp-route-maxPrice="@Model.MaxPrice" asp-route-itemsCount="@Model.ItemsCount" asp-route-page="@(page)" asp-route-type="@((int)Model.SortType)">Produkty</a>
+
+            @foreach (Category category in Model.Category.GetParents())
+            {
+                 <span> > </span> <a asp-action="Index" asp-route-categoryId="@category.Id" asp-route-minPrice="@Model.MinPrice" asp-route-maxPrice="@Model.MaxPrice" asp-route-itemsCount="@Model.ItemsCount" asp-route-page="@(page)" asp-route-type="@((int)Model.SortType)">@category.Name</a>
+            }
+
+            @if (Model.Category.Name != string.Empty)
+            {
+                <span> > </span><a  asp-action="Index" asp-route-categoryId="@Model.Category.Id" asp-route-minPrice="@Model.MinPrice" asp-route-maxPrice="@Model.MaxPrice" asp-route-itemsCount="@Model.ItemsCount" asp-route-page="@(page)" asp-route-type="@((int)Model.SortType)">@Model.Category.Name</a>
+            }
+
+        </div>
+
+        <div class="view-settings">
+            <form asp-action="Index" asp-route-categoryId="@Model.Category.Id" asp-route-minPrice="@Model.MinPrice" asp-route-maxPrice="@Model.MaxPrice" asp-route-itemsCount="@Model.ItemsCount" asp-route-page="@(page)" asp-route-type="@((int)Model.SortType)">
+                <input type="hidden" asp-for="Page" value="@Model.Page"/>                
+                <input type="hidden" asp-for="SortType" value="@Model.SortType"/>                
+
+                <div class="first">
+                    <div class="price-range">
+                        <div class="from">
+                            <label for="customRange1" class="form-label">Cena Od: </label>
+                            <input asp-for="MinPrice" type="number" class="form-control" placeholder="Zadejte minimální cenu...">
+                        </div>
+                
+
+                        <div class="to">
+                            <label for="customRange1" class="form-label">Cena Do: </label>
+                            <input asp-for="MaxPrice" type="number" class="form-control" placeholder="Zadejte maximální cenu...">
+                        </div>
+                    </div>
+                    <div class="view-products">
+                        <div style="margin-right: 10px">
+                            Zobrazit
+                        </div>
+                        @*<input step="4" min="4" max="20" asp-for="ItemsCount" type="number" class="form-control" placeholder="Zobrazit...">*@
+                        <select class="form-select my-select" name="ItemsCount" asp-for="ItemsCount"> 
+                            @for (int i = 8; i <= 20; i+=4)
+                            {
+                                if (Model.ItemsCount == i)
+                                {
+                                    <option value="@i" selected>@i</option>
+                                }else
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            }
+                        </select>
+
+                    </div>
+                </div>
+                <div class="submit-button">
+                    <button class="my-button filter-button" type="submit">Filtrovat</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="categories">
+            @foreach (Category category in Model.Category.SubCategories)
+            {
+                <a  asp-action="Index" asp-route-categoryId="@category.Id" asp-route-minPrice="@Model.MinPrice" asp-route-maxPrice="@Model.MaxPrice" asp-route-itemsCount="@Model.ItemsCount" asp-route-page="@(page)" asp-route-type="@((int)Model.SortType)">
+                    <div class="category-item">
+                        @category.Name
+                    </div>
+                </a>
+            }
+        </div>
+
+    </div>
+
+    <div class="products">
+
+        @foreach (Product product in Model.DisplayProducts)
+        {
+            @await Component.InvokeAsync("Product", product)
+        }
+                
+    </div>
+
+    <div class="pages">
+        <div class="wrapper">
+            <div>                
+                <a asp-action="Index" asp-route-categoryId="@Model.Category.Id" asp-route-minPrice="@Model.MinPrice" asp-route-maxPrice="@Model.MaxPrice" asp-route-itemsCount="@Model.ItemsCount" asp-route-page="@(page - 1)" asp-route-type="@((int)Model.SortType)">˂</a>
+            </div>
+            <div class="actual-page">
+                 @(page + 1)
+            </div>
+            <div>
+                <a asp-action="Index" asp-route-categoryId="@Model.Category.Id" asp-route-minPrice="@Model.MinPrice" asp-route-maxPrice="@Model.MaxPrice" asp-route-itemsCount="@Model.ItemsCount" asp-route-page="@(page + 1)" asp-route-type="@((int)Model.SortType)">˃</a>
+            </div>
+        </div>
+    </div>
+
+</section>

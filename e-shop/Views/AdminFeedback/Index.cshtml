@@ -1,0 +1,52 @@
+﻿@using ConsoleApp1
+<link rel="stylesheet" href="~/css/admin-table/admin-table.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/shared/rating.css" asp-append-version="true" />
+
+<div class="admin">
+	<div class="add-new">
+		<div>
+			<h3>Zpětná vazba</h3>
+		</div>		
+	</div>
+	<div class="admin-table">
+		<table>
+			<thead>
+				<tr>
+					<th>Image</th>
+					<th>Product</th>
+					<th class="rating">Rating</th>
+					<th>Detail</th>
+					<th>Remove</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<img  class="rating-picture" src="~/images/img2/10e0f753-ec99-11eb-9461-02420a000b04.png"/>
+					</td>
+					<td>11. Product Product</td>
+					<td class="rating">
+						<div class="rate">
+							<input type="radio" id="star5" name="rate" value="5" />
+							<label for="star5" title="text">5 stars</label>
+							<input type="radio" id="star4" name="rate" value="4" />
+							<label for="star4" title="text">4 stars</label>
+							<input type="radio" id="star3" name="rate" value="3" />
+							<label for="star3" title="text">3 stars</label>
+							<input type="radio" id="star2" name="rate" value="2" />
+							<label for="star2" title="text">2 stars</label>
+							<input type="radio" id="star1" name="rate" value="1" />
+							<label for="star1" title="text">1 star</label>
+						</div>
+					</td>
+					<td class="remove">
+						<a class="btn btn-secondary" asp-controller="AdminFeedback" asp-action="Detail" asp-route-id="5;">Detail</a>
+					</td>
+					<td class="remove">
+						<a class="btn btn-danger" >Remove</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>	
+</div>

@@ -1,0 +1,102 @@
+﻿@using ConsoleApp1
+@{
+    List<OrderItem> OrderItems = this.ViewBag.OrderItems;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - e_shop</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/e_shop.styles.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="~/css/shared/general.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/checkoutLayout/_LayoutCheckout.css" asp-append-version="true"/>    
+    
+</head>
+<body>
+    <div class="wrapper">
+        <div class="checkout">
+            <div class="logo">
+                <a asp-controller="Home" asp-action="Index">
+                    <img src="~/images/img/Group 4.png"/>
+                </a>
+            </div>
+            <div>
+                @RenderBody()
+            </div>
+        </div>
+        <div class="cart">
+
+            <div class="wrapper">
+                <div class="products">
+
+                    @foreach (OrderItem item in OrderItems)
+                    {
+                        <div class="product">
+                            <div class="image">                            
+                                @if(item.Variant.Product.Photos != null && item.Variant.Product.Photos.Count() > 0)
+		                        {							
+			                        <img src="~/images/uploaded/@item.Variant.Product.Photos.MaxBy(p => p.Priority).Name"/>
+		                        }
+		                        else
+		                        {
+			                        <img src="~/images/img2/noimage.png"/>		
+		                        }
+                                <div class="count">
+                                    @item.Quantity
+                                </div>
+                                <div class="overlay"></div>
+                            </div>
+                            <div class="title">
+                                @item.Variant.Product.Title
+                            </div>
+                            <div class="price">
+                                @item.Variant.GetDiscountedPriceTax() Kč
+                            </div>
+                        </div>                        
+                    }
+                </div>
+                <div class="divider">
+                    <div>
+                        <img src="~/images/img/Group 295.png" alt="">
+                    </div>
+                </div>
+                <div class="price">
+                    <div class="price-no-tax">
+                        <div>Cena bez DPH</div>
+                        <div>
+                            @try
+						    {
+							    @OrderItems.Select(o => o.Quantity * o.Variant.GetDiscountedPriceNoTax()).Aggregate((a, b) => a + b)
+						    }
+						    catch
+						    {
+							    <span>0</span>
+						    }
+						    Kč
+                        </div>
+                    </div>
+                    <div class="price-tax">
+                        <div>Cena včetně DPH</div>
+                        <div>
+                            @try
+						    {
+							    @OrderItems.Select(o => o.Quantity * o.Variant.GetDiscountedPriceTax()).Aggregate((a, b) => a + b)
+						    }
+						    catch
+						    {
+							    <span>0</span>
+						    }
+						
+						    Kč
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

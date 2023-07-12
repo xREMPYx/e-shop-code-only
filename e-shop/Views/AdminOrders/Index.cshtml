@@ -1,0 +1,31 @@
+﻿@model IEnumerable<e_shop.Models.Order>
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h1>Objednávky</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Objednávka
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @($"{item.CustomerDetails.First_Name} {item.CustomerDetails.Last_Name}")
+                </td>
+                <td>                    
+                    <a asp-action="Detail" asp-route-id="@item.Id">Detail</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

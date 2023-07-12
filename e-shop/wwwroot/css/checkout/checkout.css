@@ -1,0 +1,287 @@
+﻿.checkout-route a {
+    text-decoration: none;
+}
+
+    .checkout-route a:hover {
+        text-decoration: underline;
+    }
+
+.checkout-route .previous,
+.checkout-route .previous a {
+    color: #c7232f;
+}
+
+.checkout-route .actual,
+.checkout-route .actual a {
+    color: #000000;
+}
+
+.checkout-route .next,
+.checkout-route .next a {
+    color: #b7c1d7;
+}
+
+.checkout-route .cart:hover {
+    cursor: default;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#contact-info-heading,
+#shipping-heading {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+form {
+    margin: 20px 0px;
+}
+
+form input,
+form select {
+    padding: 10px;
+    border-radius: 5px;
+    flex: 1;
+    height: 50px;
+    border: none;
+    outline: 1px #cccccc solid;
+    background: #fff;
+}
+
+form input::placeholder {
+    color: #d3d5db;
+    opacity: 1;
+}
+
+.two-input-div {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form > div{
+    width: 100%;
+    display: flex;
+}
+
+form .action-buttons {
+    font-size: 20px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    form .action-buttons button.go-back {
+        border: none;
+        background: none;
+        color: #c7232f;
+        width: auto;
+    }
+
+        form .action-buttons button.go-back:hover {
+            border: none;
+            background: none;
+            color: #304068;
+            text-decoration: underline;
+        }
+
+    #checkout-completed .action-buttons-checkout-completed {
+        font-size: 20px;
+        margin-top: 20px;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+    }
+
+#checkout-completed .action-buttons-checkout-completed .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#checkout-completed .action-buttons-checkout-completed a{
+    width: 100%;
+    height: 100%;
+    text-decoration: none;    
+}
+
+#checkout-completed .action-buttons-checkout-completed .button a:hover{
+    color: #fff;
+}
+
+    form .action-buttons a {
+        color: #c7232f;
+        text-decoration: none;
+    }
+
+form .action-buttons a:hover {
+    text-decoration: underline;
+}
+
+form .action-buttons button,
+#checkout-completed .action-buttons-checkout-completed .button {
+    width: 200px;
+    text-align: center;
+}
+
+form .quick-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;        
+    outline: 1px solid #b7c1d7;
+    border-radius: 5px;
+}
+
+form .quick-info .quick-info-divider {
+    width: 95%;
+    background: #b7c1d7;
+    height: 1px;
+}
+
+form .quick-info .item {
+    height: 70px;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 16px;
+}
+
+form .quick-info .item .heading {
+    flex: 2;    
+    font-weight: 500;
+    color: #304068;
+}
+
+form .quick-info .item .email,
+form .quick-info .item .address {
+    flex: 5;
+}
+
+form .quick-info .item .email input{
+    margin-top: 0px;
+    width: 100%;
+}
+
+form .quick-info .item .button {
+    flex: 2;
+    text-align: right;
+    
+}
+
+form .quick-info .item .button a {
+    color: #c7232f;
+}
+
+form .quick-info .item .button a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+
+form fieldset input {
+    display: none;
+}
+
+form fieldset div.my-form-check label{
+    margin-left: 5px;
+    margin-top: 4px;
+}
+
+form fieldset label:hover {
+    cursor: pointer;
+}
+
+form fieldset input:checked + label div {
+    border-color: #304068;
+}
+
+form fieldset input:checked + label div > div {
+    width: 75%;
+    height: 75%;
+    background: #304068;
+    border: 1px solid #cccccc;
+}
+
+form fieldset > div {
+    display: flex;
+    gap: 10px;
+}
+
+form fieldset label div {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #cccccc;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#checkout-completed{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#checkout-completed .confirmed-box,
+#checkout-completed .information-box {
+    outline: 1px solid #b7c1d7;
+    border-radius: 5px;
+}
+
+#checkout-completed .confirmed-box{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+#checkout-completed .information-box{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+#checkout-completed .information-box .wrapper {
+    display: flex;
+    gap: 120px;
+}
+
+#checkout-completed .information-box .wrapper > div {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#checkout-completed .confirmed-box > .heading,
+#checkout-completed .information-box > .heading {
+    font-size: 20px;
+}
+
+#checkout-completed .information{
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+#checkout-completed .information .heading{
+    font-size: 18px;
+}
+
+#checkout-completed .information > div:not(.heading){
+    color: #808080;    
+}

@@ -1,0 +1,125 @@
+﻿@using e_shop.Enums
+@model Order
+@{
+	Layout = "_LayoutCheckout";
+	CheckoutState state = this.ViewBag.CheckoutState;
+
+	string GetClass(CheckoutState f, CheckoutState a)
+	{
+		return f == a ? "actual" : f > a ? "next" : "previous";
+	}
+}
+
+<link rel="stylesheet" href="~/css/checkout/checkout.css"  asp-append-version="true" />
+
+<div class="checkout-route">
+	<span class="cart @GetClass(CheckoutState.CART, state)">
+		Košík
+	</span>
+	<span>></span>
+	<span class="@GetClass(CheckoutState.INFORMATION, state)">
+		Údaje
+	</span>
+	<span>></span>
+	<span class="@GetClass(CheckoutState.SHIPPING, state)">
+		Doprava
+	</span>
+	<span>></span>
+	<span class="@GetClass(CheckoutState.PAYMENT, state)">
+		Platba
+	</span>
+</div>
+
+<form asp-action="Checkout_3">
+		
+	<input type="hidden" asp-for="CustomerDetails.Contact"/>		
+	<input type="hidden" asp-for="CustomerDetails.First_Name"/>
+	<input type="hidden" asp-for="CustomerDetails.Last_Name"/>	
+	<input type="hidden" asp-for="CustomerDetails.Street"/>	
+	<input type="hidden" asp-for="CustomerDetails.Apartment"/>
+	<input type="hidden" asp-for="CustomerDetails.City"/>	
+	<input type="hidden" asp-for="CustomerDetails.Country"/>	
+	<input type="hidden" asp-for="CustomerDetails.Postal_Code"/>
+
+	<div class="quick-info">
+		<div class="item">
+			<div class="heading">
+				Kontakt
+			</div>
+			<div class="email">
+				@Model.CustomerDetails.Contact
+			</div>
+			<div class="button">
+				<a>Change</a>
+			</div>
+		</div>
+		
+		<div class="quick-info-divider"></div>
+
+		<div class="item">
+			<div class="heading">
+				Adresa
+			</div>
+			<div class="address">
+				@($"{Model.CustomerDetails.City}, {Model.CustomerDetails.Street}, {Model.CustomerDetails.Apartment}")
+			</div>
+			<div class="button">
+				<a>Change</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="shipping-heading">
+		Zvolit způsob dopravy
+	</div>
+
+	<fieldset id="shipping-option">
+        <div class="item1">                                    
+            @*<input type="radio" name="shipping-option" id="o1" value="0" asp-for="ShippingMethod">*@
+			@Html.RadioButtonFor(model => model.ShippingMethod, 0, new {id="ShippingMethod1"})
+            <label for="ShippingMethod1">
+                <div>
+                    <div>
+
+                    </div>
+                </div>
+            </label>
+            <label for="ShippingMethod1">Česká pošta (100Kč)</label>
+        </div>
+        <div class="item2">
+            @*<input type="radio" name="shipping-option" id="o2" value="1"  asp-for="ShippingMethod">*@
+			@Html.RadioButtonFor(model => model.ShippingMethod, 1, new {id="ShippingMethod2"})
+            <label for="ShippingMethod2">
+                <div>
+                    <div>
+
+                    </div>
+                </div>
+            </label>
+            <label for="ShippingMethod2">Zásilkovna (80Kč)</label>
+        </div>
+        <div class="item3">
+            @*<input type="radio" name="shipping-option" id="o3" value="2" asp-for="ShippingMethod">*@
+			@Html.RadioButtonFor(model => model.ShippingMethod, 2, new {id="ShippingMethod3"})
+            <label for="ShippingMethod3">
+                <div>
+                    <div>
+
+                    </div>
+                </div>
+            </label>
+            <label for="ShippingMethod3">Na pobočce (Zdarma)</label>
+        </div>                                                                
+    </fieldset>
+
+	<div class="action-buttons">
+		<div>			
+			<button formaction="@Url.Action("Checkout_1")" formmethod="post" class="go-back" type="submit">
+				˂ Zpět k údajům
+			</button>			
+		</div>
+		<div>
+			<button class="my-button" type="submit">Pokračovat k dopravě</button>
+		</div>
+	</div>
+</form>
